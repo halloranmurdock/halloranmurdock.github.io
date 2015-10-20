@@ -100,47 +100,47 @@ d3.csv("data/csvData.csv", function(error, data) {
 // });
 
 
-  var dataArray = [
-    {"x": 40, "size": 10, "color": "pink"},
-    {"x": 80, "size": 20, "color": "green"},
-    {"x": 120, "size": 15, "color": "purple"},
-    {"x": 200, "size": 30, "color": "blue"}
-  ];
+ //  var dataArray = [
+ //    {"x": 40, "size": 10, "color": "pink"},
+ //    {"x": 80, "size": 20, "color": "green"},
+ //    {"x": 120, "size": 15, "color": "purple"},
+ //    {"x": 200, "size": 30, "color": "blue"}
+ //  ];
 
-  var dataArray2 = [
-    {"x": 40, "radius": 10, "color": "pink"},
-    {"x": 120, "radius": 25, "color": "purple"}
-  ];
+ //  var dataArray2 = [
+ //    {"x": 40, "radius": 10, "color": "pink"},
+ //    {"x": 120, "radius": 25, "color": "purple"}
+ //  ];
 
-	function draw(data) {
+	// function draw(data) {
 
-    var circle = d3.select("g#dataCircles").selectAll("circle")
-      .data(data, function(d){
-        return d.color;
-      });
+ //    var circle = d3.select("g#dataCircles").selectAll("circle")
+ //      .data(data, function(d){
+ //        return d.color;
+ //      });
 
-    circle.enter().append("circle")
-      .attr("cy", 60)
-      .style("fill", function(d){
-        return d.color;
-      })
-      .attr("r", 10);
+ //    circle.enter().append("circle")
+ //      .attr("cy", 60)
+ //      .style("fill", function(d){
+ //        return d.color;
+ //      })
+ //      .attr("r", 10);
 
-    circle.transition().duration(1000)
-      .attr("r", function(dataPoint){
-        return dataPoint.size;
-      })
-      .style("fill", function(d){
-        return d.color;
-      })
-      .attr("cx", function(d){
-        return d.x;
-      });
+ //    circle.transition().duration(1000)
+ //      .attr("r", function(dataPoint){
+ //        return dataPoint.size;
+ //      })
+ //      .style("fill", function(d){
+ //        return d.color;
+ //      })
+ //      .attr("cx", function(d){
+ //        return d.x;
+ //      });
 
-    circle.exit().transition().duration(1000)
-      .attr("r", 0).remove();
+ //    circle.exit().transition().duration(1000)
+ //      .attr("r", 0).remove();
 
-  }
+ //  }
 
 
 
