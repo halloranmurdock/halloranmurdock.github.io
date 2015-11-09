@@ -1,0 +1,81 @@
+---
+layout: default
+---
+
+<style>
+	#controls {
+		background-color: pink;
+		position: absolute;
+		top:0;
+		bottom:0;
+		width:200px;
+	}
+	svg {
+		background-color: limegreen;
+		margin-left: 200px;
+	}
+
+</style>
+
+
+<div id="controls"> 
+	<select id="year_dropdown"></select>	
+
+</div>
+
+<svg width =500 height=500></svg>
+
+
+<script>
+
+var raw_data = [], 
+	species = false;
+
+d3.csv("data/fish/catchdata.csv", function(error, data){
+
+	raw_data = data.filter(function(d){
+		return d.NOC === "ALB";
+	});
+
+	var species = [];
+
+	raw_data.forEach(function(d){
+		d.species = parseFloat (d.Edition);
+		if (species.indexOf (d.species) == -1) {
+			species.push(d.species);
+		}
+		console.log(d.species);
+	}); 
+
+
+
+
+	species.sort();
+	species = species[0];
+
+	d3.select("#species_dropdown").selectAll("option")
+		.data(species).enter().append("option")
+		.attr("value", function(d){
+			return d;
+		})
+		.text(function(d){
+			return d;
+		});
+
+		draw();
+
+
+d3.select("#species_dropdown").on("change", function(){
+	species = species[this.selectedIndex];
+	draw();
+
+
+
+	});
+
+});
+
+
+
+
+</script>
