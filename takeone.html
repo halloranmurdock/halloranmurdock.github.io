@@ -37,7 +37,6 @@ d3.csv("data/fish/catchdata.csv", function(error, data){
 		return d.NOC === "ALB";
 	});
 
-	var species = [];
 
 	raw_data.forEach(function(d){
 		d.species = parseFloat (d.Edition);
