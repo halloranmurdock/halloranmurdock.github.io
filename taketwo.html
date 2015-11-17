@@ -1,0 +1,38 @@
+---
+layout: default
+---
+
+<svg width=1000 height=100></svg>
+
+
+<script>
+
+var fish_data;
+
+d3.csv("data/fish/catchdata.csv", function(error, data){
+	
+	data.forEach(function(d){
+		d.species = parseFloat(d.total);
+	});
+
+	console.log(data);
+
+
+function draw() {
+
+	var circle = d3.select("svg").selectAll("circle")
+		.data(fish_data)
+
+
+	circles.enter().append("circle")
+		.attr("cy", 50)
+		.attr("cx", 50)
+		.attr("r",5);
+
+	circles.exit(), remove();
+
+	}
+
+
+</script>
+

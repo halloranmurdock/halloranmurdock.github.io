@@ -35,3 +35,101 @@ a {
 }
 
 
+body {
+	background-color: #FCDED6;
+}
+
+h1 {
+	font-family: Didot, 'Didot LT STD', 'Hoefler Text', Garamond, 'Times New Roman', serif;
+	font-size: 55px;
+	font-style: italic;
+	font-variant: normal;
+	font-weight: bold;
+	line-height: 39.6px;
+	text-align: center;
+}
+
+h3 {
+	font-family: Futura, 'Trebuchet MS', Arial, sans-serif;
+	font-size: 11px;
+	font-style: normal;
+	font-variant: normal;
+	font-weight: bold;
+	line-height: 15.4px;
+	letter-spacing: 2px;
+	text-align: center;
+	padding-top: 10px;
+
+}
+
+
+hr {height:2px; 
+	width: 14px; 
+	border: 2px; 
+	color: black; 
+	background-color:black; 
+	width:10%; 
+	text-align:left; 
+	margin: 10 auto 0 0;}
+
+
+
+
+#rectangle{
+    width:1100px;
+    height:1000px;
+    background:white;
+    margin: 0 auto;
+    position: relative;
+
+}
+
+
+
+.fish {
+    height: auto; 
+    width: auto; 
+    max-width: 300px; 
+    max-height: 300px;
+    position: absolute;
+    cursor: pointer;
+}
+
+.fish:hover {
+	opacity: .7;
+}
+	
+#fishone {
+	top: 40px;
+	left: 40px;
+}
+
+#fishtwo {
+	top: 100px;
+	left: 420px;
+}
+
+#fishthree {
+	top: 40px;
+	left: 800px;
+}
+
+.line {
+	background-color: black;
+	height: 2px;
+	width: 30px;
+
+}
+
+#container * {
+	display: inline-block;
+
+
+}
+
+#container {
+	width: 1000px;
+	height: 100px;
+	margin: 0 auto;
+	text-align: center;
+}

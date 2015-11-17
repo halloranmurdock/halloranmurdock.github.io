@@ -2,6 +2,40 @@
 layout: default
 ---
 
+
+<body>
+
+<h1> pick a fish any fish </h1>
+
+<div id="container"> 
+
+	<div class ="line"> </div>
+
+	<h3> NOMINAL CATCHES FROM 2006-2013 </h3>
+
+	<div class ="line"> </div>
+
+</div>
+
+
+
+<div id="rectangle">
+
+<img src="images/fishone.png" class="fish" id="fishone">
+
+<img src="images/fishtwo.png" class="fish" id="fishtwo">
+
+<img src="images/fishthree.png" class="fish" id="fishthree">
+
+
+</div>
+
+
+
+
+
+</body>
+
 <style>
 	#controls {
 		background-color: white;
@@ -17,41 +51,44 @@ layout: default
 
 </style>
 
-
+<!-- 
 <div id="controls"> 
 	<select id="year_dropdown"></select>	
-
+ -->
 </div>
 
-<svg width =500 height=500></svg>
+<!-- <svg width =500 height=500></svg> -->
 
 
 <script>
 
+
+
+d3.csv("data/fish/alpha.csv")
+
+
 var raw_data = [], 
-	species = [false];
+	species = [];
 
 d3.csv("data/fish/catchdata.csv", function(error, data){
 
 	raw_data = data.filter(function(d){
-		return d.species === "ALB";
+		return d.species === "ABK";
 	});
 
-
+	console.log(raw_data);
 
 
 	raw_data.forEach(function(d){
 		d.species = parseFloat(d.species);
 		if (species.indexOf(d.species) == -1) {
-			species.push([]);
+			species.push(d.species);
 		}
-		console.log(d.species);
+		console.log(species);
 	}); 
 
 
-
-
-
+console.log(raw_data[0].year2013);
 
 	d3.select("#species_dropdown").selectAll("option")
 		.data(species).enter().append("option")
