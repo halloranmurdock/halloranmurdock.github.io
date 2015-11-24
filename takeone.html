@@ -21,15 +21,58 @@ layout: default
 
 <div id="rectangle">
 
-<img src="images/fishone.png" class="fish" id="fishone">
+<img src="images/ALB.png" class="fish" id="ALB">
 
-<img src="images/fishtwo.png" class="fish" id="fishtwo">
+<img src="images/ACC.png" class="fish" id="ACC">
 
-<img src="images/fishthree.png" class="fish" id="fishthree">
+<img src="images/ANE.png" class="fish" id="ANE">
 
+<img src="images/ABK.png" class="fish" id="ABK">
+
+<img src="images/ALC.png" class="fish" id="ALC">
+
+<img src="images/ALV.png" class="fish" id="ALV">
+
+<img src="images/ALF.png" class="fish" id="ALF">
+
+<img src="images/ANF.png" class="fish" id="ANF">
+
+<img src="images/ARG.png" class="fish" id="ARG">
+
+<img src="images/ARU.png" class="fish" id="ARU">
+
+<img src="images/ARY.png" class="fish" id="ARY">
+
+<img src="images/BET.png" class="fish" id="BET">
+
+<img src="images/BFT.png" class="fish" id="BFT">
+
+<img src="images/BIB.png" class="fish" id="BIB">
+
+<img src="images/BLI.png" class="fish" id="BLI">
+
+<img src="images/BOC.png" class="fish" id="BOC">
 
 </div>
 
+
+
+
+
+<!-- <div id="openModal" class="modalDialog">
+	
+</div> -->
+
+<a href="#openModal">In theory, this should be each fish</a>
+
+<div id="openModal" class="modalDialog">
+	<div>
+		<a href="#close" title="Close" class="close">X</a>
+		<h2>FIRST FISH</h2>
+		<p>Fish data woo.</p>
+		<p>Maybe.</p>
+	</div>
+</div>
 
 
 
@@ -64,7 +107,7 @@ layout: default
 
 
 
-d3.csv("data/fish/alpha.csv")
+
 
 
 var raw_data = [], 
@@ -72,20 +115,22 @@ var raw_data = [],
 
 d3.csv("data/fish/catchdata.csv", function(error, data){
 
-	raw_data = data.filter(function(d){
-		return d.species === "ABK";
-	});
+	raw_data = data
+
+	// data.filter(function(d){
+	// 	return d.species === "ABK";
+
 
 	console.log(raw_data);
 
 
-	raw_data.forEach(function(d){
-		d.species = parseFloat(d.species);
-		if (species.indexOf(d.species) == -1) {
-			species.push(d.species);
-		}
-		console.log(species);
-	}); 
+	// raw_data.forEach(function(d){
+	// 	d.species = parseFloat(d.species);
+	// 	if (species.indexOf(d.species) == -1) {
+	// 		species.push(d.species);
+	// 	}
+	// 	// console.log(species);
+	// }); 
 
 
 console.log(raw_data[0].year2013);
@@ -113,6 +158,33 @@ d3.select("#species_dropdown").on("change", function(){
 });
 
 
+
+
+function selectfish(fish) {
+	console.log(fish)
+// logic for drawing fish popup 
+
+}
+
+
+d3.selectAll(".fish").on("click", function(){
+	selectfish(this.id)
+
+
+
+
+	var newdata = d3.nest()
+			.key(function(d){
+				return d.species;
+			})
+			.entries(raw_data);
+
+
+	console.log(newdata);
+
+
+
+});
 
 
 </script>
