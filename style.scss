@@ -99,88 +99,123 @@ hr {height:2px;
 	opacity: .7;
 }
 	
-#ALB {
+#HAD {
 	top: 40px;
 	left: 50px;
 }
 
-#ACC {
+#POK {
 	top: 100px;
 	left: 420px;
 }
 
-#ANE {
+#HER {
 	top: 40px;
 	left: 750px;
 }
 
-#ABK {
+#COD {
 	top: 250px;
 	left: 5px;
 }
 
 
-#ALC {
+#MAC {
 	top: 280px;
 	left: 300px;
 }
 
 
-#ALV {
+#LIN {
 	top: 280px;
 	left: 650px;
 }
 
-#ALF {
+#WHB {
 	top: 470px;
 	left: 70px;
 }
 
-#ANF {
+#RED {
 	top: 540px;
 	left: 420px;
 }
 
-#ARG {
+#SKA {
 	top: 420px;
 	left: 750px;
 }
 
-#ARU {
+#FIN {
 	top: 720px;
 	left: 330px;
 }
 
-#ARY {
+#HKE {
 	top: 650px;
 	left: 10px;
 }
 
-#BET {
+#TUR {
 	top: 670px;
 	left: 670px;
 }
 
 
-#BFT {
+#PLE {
 	top: 850px;
 	left: 30px;
 }
 
-#BIB {
+#WHG {
 	top: 890px;
 	left: 360px;
 }
 
-#BLI {
-	top: 890px;
+#HOM {
+	top: 860px;
 	left: 720px;
 }
 
-#BOC {
+#POL {
 	top: 1040px;
 	left: 20px;
 }
+
+#HAL {
+	top: 1080px;
+	left: 400px;
+}
+
+#USK {
+	top: 1220px;
+	left: 40px;
+}
+
+
+#GHL {
+	top: 1100px;
+	left: 750px;
+}
+
+#BLI {
+	top: 1400px;
+	left: 750px;
+}
+
+
+#MON {
+	top: 1300px;
+	left: 450px;
+}
+
+#LEM {
+	top: 1450px;
+	left: 200px;
+}
+
+
+
 
 
 
@@ -208,12 +243,12 @@ hr {height:2px;
 
 .modalDialog {
 	position: fixed;
-	font-family: Arial, Helvetica, sans-serif;
+	font-family: Futura, 'Trebuchet MS', Arial, sans-serif;
 	top: 0;
 	right: 0;
 	bottom: 0;
 	left: 0;
-	background: rgba(0,0,0,0.8);
+	background: rgba(0,0,0,.8);
 	z-index: 99999;
 	opacity:0;
 	-webkit-transition: opacity 400ms ease-in;
@@ -223,21 +258,21 @@ hr {height:2px;
 }
 
 
-.modalDialog:target {
+.modalDialog.open {
 	opacity:1;
 	pointer-events: auto;
 }
 
 .modalDialog > div {
-	width: 400px;
+	width: 600px;
 	position: relative;
 	margin: 10% auto;
 	padding: 5px 20px 13px 20px;
 	border-radius: 10px;
-	background: #fff;
-	background: -moz-linear-gradient(#fff, #999);
-	background: -webkit-linear-gradient(#fff, #999);
-	background: -o-linear-gradient(#fff, #999);
+	background: white;
+	// background: -moz-linear-gradient(#fff, #999);
+	// background: -webkit-linear-gradient(#fff, #999);
+	// background: -o-linear-gradient(#fff, #999);
 }
 
 
@@ -260,4 +295,44 @@ hr {height:2px;
 	box-shadow: 1px 1px 3px #000;
 }
 
-.close:hover { background: #00d9ff; }
+.close:hover { background: #FCDED6; }
+
+
+.yearlabel {
+	font-family: Futura, 'Trebuchet MS', Arial, sans-serif;
+}
+
+
+.year_slider {
+	position: absolute;
+	width: 400px;
+}
+
+#inputYear {
+	width: 600px;
+	text-align: center;
+	
+}
+
+#outputYear {
+	text-align: center;
+}
+
+input[type=range],
+	::-moz-range-track,
+	 ::-ms-track {
+	 -webkit-appearance: none;
+	 background-color: 3f91e5;
+	 width: 400px;
+	 height:20px;
+}
+
+
+::-webkit-slider-thumb,
+	::-moz-range-thumb,
+	 ::-ms-thumb {
+	-webkit-appearance: none;
+	background-color: #666;
+	width: 10px;
+	height: 20px;
+}

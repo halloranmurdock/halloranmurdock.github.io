@@ -15,43 +15,61 @@ layout: default
 
 	<div class ="line"> </div>
 
+
+
+
 </div>
 
 
 
 <div id="rectangle">
 
-<img src="images/ALB.png" class="fish" id="ALB">
+<img src="images/HAD.png" class="fish" id="HAD">
 
-<img src="images/ACC.png" class="fish" id="ACC">
+<img src="images/POK.png" class="fish" id="POK">
 
-<img src="images/ANE.png" class="fish" id="ANE">
+<img src="images/HER.png" class="fish" id="HER">
 
-<img src="images/ABK.png" class="fish" id="ABK">
+<img src="images/COD.png" class="fish" id="COD">
 
-<img src="images/ALC.png" class="fish" id="ALC">
+<img src="images/MAC.png" class="fish" id="MAC">
 
-<img src="images/ALV.png" class="fish" id="ALV">
+<img src="images/LIN.png" class="fish" id="LIN">
 
-<img src="images/ALF.png" class="fish" id="ALF">
+<img src="images/WHB.png" class="fish" id="WHB">
 
-<img src="images/ANF.png" class="fish" id="ANF">
+<img src="images/RED.png" class="fish" id="RED">
 
-<img src="images/ARG.png" class="fish" id="ARG">
+<img src="images/SKA.png" class="fish" id="SKA">
 
-<img src="images/ARU.png" class="fish" id="ARU">
+<img src="images/FIN.png" class="fish" id="FIN">
 
-<img src="images/ARY.png" class="fish" id="ARY">
+<img src="images/HKE.png" class="fish" id="HKE">
 
-<img src="images/BET.png" class="fish" id="BET">
+<img src="images/TUR.png" class="fish" id="TUR">
 
-<img src="images/BFT.png" class="fish" id="BFT">
+<img src="images/PLE.png" class="fish" id="PLE">
 
-<img src="images/BIB.png" class="fish" id="BIB">
+<img src="images/WHG.png" class="fish" id="WHG">
+
+<img src="images/HOM.png" class="fish" id="HOM">
+
+<img src="images/POL.png" class="fish" id="POL">
+
+<img src="images/HAL.png" class="fish" id="HAL">
+
+<img src="images/USK.png" class="fish" id="USK">
+
+<img src="images/GHL.png" class="fish" id="GHL">
 
 <img src="images/BLI.png" class="fish" id="BLI">
 
-<img src="images/BOC.png" class="fish" id="BOC">
+<img src="images/MON.png" class="fish" id="MON">
+
+<img src="images/LEM.png" class="fish" id="LEM">
+
+
+
 
 </div>
 
@@ -63,14 +81,42 @@ layout: default
 	
 </div> -->
 
-<a href="#openModal">In theory, this should be each fish</a>
 
 <div id="openModal" class="modalDialog">
 	<div>
 		<a href="#close" title="Close" class="close">X</a>
-		<h2>FIRST FISH</h2>
-		<p>Fish data woo.</p>
-		<p>Maybe.</p>
+		<h2>COD</h2>
+		<svg width="400px" height="400px"> </svg>
+
+
+
+	<div id="year_slider">
+		<!--the name of the slider-->
+		<label id="yearLabel" for="fader"></label>
+		<br>
+		<!--the output based on where the slider is-->
+		<output for="fader" id="year">2013</output>	
+		<br>
+		<!--input, the button of the slider-->
+		<input type="range" min="2006" max="2013" value="2013" id="inputYear" step="1" oninput="outputUpdate(value)" width="300px">
+
+<!-- 		<datalist id="yearscale">
+		<option>0</option>
+		<option>1</option>
+		<option>2</option>
+		<option>3</option>
+		<option>4</option>
+		<option>5</option>
+		<option>6</option>
+		<option>7</option>
+		<option>8</option>
+		<option>9</option>
+		<option>10</option>
+	</datalist> -->
+		
+	</div>
+
+
 	</div>
 </div>
 
@@ -106,85 +152,129 @@ layout: default
 <script>
 
 
-
+function outputUpdate(year) {
+		document.querySelector('#year').value = year;
+	}
 
 
 
 var raw_data = [], 
-	species = [];
+	species = []
+	nestedfish = [];
+
+
+
+
+
+	d3.selectAll(".fish").on("click", function(){
+		console.log(this.id)
+		d3.select("#openModal").select("h2").text(this.id);
+
+		var fish = this.id;
+
+		var fishdata = nestedfish
+			.filter(function(d){
+				return d.key==fish;
+			})[0].values;
+
+			console.log(fishdata);
+
+					d3.select("#openModal").classed("open", true);
+
+
+
+		var pie = d3.layout.pie()
+		.value(function(d){
+			return d.yeardata;
+		});
+
+		// change the .innerRadius to make a donut 
+
+
+		data = pie(data);
+
+		var arc = d3.svg.arc()
+			.innerRadius(170)
+			.outerRadius(300);
+
+		var slices = d3.select("svg").selectAll("path")
+			.data(data);
+
+			// this is moving it to make them start in center 
+
+		slices.enter().append("path")
+			.attr("transform", "translate(300,300)")
+			.style("fill", function(d){
+				return d.data.color;
+			})
+			.attr("d", arc);
+
+
+
+
+// this is where I can filter stuff 
+
+// key - name
+// value - data array
+
+
+});
+
+	var specific_data = species.filter(function(d){
+		return d.species == "ABK";
+
+
+});
+
+		d3.selectAll(".close").on("click", function(){
+	
+
+		d3.select("#openModal").classed("open", false);
+
+});
 
 d3.csv("data/fish/catchdata.csv", function(error, data){
 
 	raw_data = data
 
-	// data.filter(function(d){
-	// 	return d.species === "ABK";
 
 
 	console.log(raw_data);
 
 
-	// raw_data.forEach(function(d){
-	// 	d.species = parseFloat(d.species);
-	// 	if (species.indexOf(d.species) == -1) {
-	// 		species.push(d.species);
-	// 	}
-	// 	// console.log(species);
-	// }); 
 
-
-console.log(raw_data[0].year2013);
-
-	d3.select("#species_dropdown").selectAll("option")
-		.data(species).enter().append("option")
-		.attr("value", function(d){
-			return d;
-		})
-		.text(function(d){
-			return d;
-		});
-
-		
-
-
-d3.select("#species_dropdown").on("change", function(){
-	species = species[this.selectedIndex];
-	draw();
-
-
-
-	});
-
-});
-
-
-
-
-function selectfish(fish) {
-	console.log(fish)
-// logic for drawing fish popup 
-
-}
-
-
-d3.selectAll(".fish").on("click", function(){
-	selectfish(this.id)
-
-
-
-
-	var newdata = d3.nest()
+	nestedfish = d3.nest()
 			.key(function(d){
 				return d.species;
+			})
+			.key(function(d){
+				return d.country;
+			})
+
+			.rollup(function(leaves){
+				var yeardata = {};
+				d3.range(2006,2014).forEach(function(year){
+					yeardata[year]=d3.sum(leaves, function(d){
+						return d["year"+year]
+					})
+				})
+				return yeardata;
 			})
 			.entries(raw_data);
 
 
-	console.log(newdata);
+	nestedfish = nestedfish.sort( function(a,b){
+		return b.values.length - a.values.length;
+	}).slice(0,30);
+
+
+
+	console.log(nestedfish);
 
 
 
 });
+
 
 
 </script>
