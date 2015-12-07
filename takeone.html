@@ -154,6 +154,8 @@ layout: default
 
 function outputUpdate(year) {
 		document.querySelector('#year').value = year;
+		currentYear = year;
+		drawPie();
 	}
 
 
@@ -161,9 +163,37 @@ function outputUpdate(year) {
 var raw_data = [], 
 	species = []
 	nestedfish = [];
+var currentYear = 2013;
+
+function drawPie() {
+
+		var pie = d3.layout.pie()
+		.value(function(d){
+			return d.values[currentYear];
+		});
+
+		// change the .innerRadius to make a donut 
 
 
+		data = pie(fishdata);
 
+		var arc = d3.svg.arc()
+			.innerRadius(120)
+			.outerRadius(200);
+
+		var slices = d3.select("svg").selectAll("path")
+			.data(data);
+
+			// this is moving it to make them start in center 
+
+		slices.enter().append("path")
+			.attr("transform", "translate(200,200)")
+			.style("fill", function(d){
+				return d.data.color;
+			})
+			.attr("d", arc);
+
+}
 
 
 	d3.selectAll(".fish").on("click", function(){
@@ -185,17 +215,17 @@ var raw_data = [],
 
 		var pie = d3.layout.pie()
 		.value(function(d){
-			return d.yeardata;
+			return d.values[currentYear];
 		});
 
 		// change the .innerRadius to make a donut 
 
 
-		data = pie(data);
+		data = pie(fishdata);
 
 		var arc = d3.svg.arc()
-			.innerRadius(170)
-			.outerRadius(300);
+			.innerRadius(120)
+			.outerRadius(200);
 
 		var slices = d3.select("svg").selectAll("path")
 			.data(data);
@@ -203,7 +233,7 @@ var raw_data = [],
 			// this is moving it to make them start in center 
 
 		slices.enter().append("path")
-			.attr("transform", "translate(300,300)")
+			.attr("transform", "translate(200,200)")
 			.style("fill", function(d){
 				return d.data.color;
 			})
