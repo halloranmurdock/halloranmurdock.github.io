@@ -164,8 +164,14 @@ var raw_data = [],
 	species = []
 	nestedfish = [];
 var currentYear = 2013;
+var currentFish;
 
 function drawPie() {
+		var fishdata = nestedfish
+			.filter(function(d){
+				return d.key == currentFish;
+			})[0].values;
+
 
 		var pie = d3.layout.pie()
 		.value(function(d){
@@ -199,17 +205,18 @@ function drawPie() {
 	d3.selectAll(".fish").on("click", function(){
 		console.log(this.id)
 		d3.select("#openModal").select("h2").text(this.id);
-
+		currentFish = this.id;
 		var fish = this.id;
 
 		var fishdata = nestedfish
 			.filter(function(d){
-				return d.key==fish;
+				return d.key == currentFish;
 			})[0].values;
 
 			console.log(fishdata);
 
 					d3.select("#openModal").classed("open", true);
+
 
 
 drawPie();
