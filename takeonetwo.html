@@ -68,6 +68,9 @@ layout: default
 
 <img src="images/LEM.png" class="fish" id="LEM">
 
+<img src="images/WIT.png" class="fish" id="WIT">
+
+<img src="images/COE.png" class="fish" id="COE">
 
 
 
@@ -159,6 +162,8 @@ function drawPie() {
 				return d.key == currentFish;
 			})[0].values;
 
+		var color = d3.scale.ordinal()
+		.range(["#9ee3e5", "#ff8080", "#FCDED6", "#ffffcc","#216e91","#134258"]);
 
 		var pie = d3.layout.pie()
 		.value(function(d){
@@ -181,11 +186,11 @@ function drawPie() {
 
 		slices.enter().append("path")
 			.attr("transform", "translate(200,200)")
-			.style("fill", function(d){
-				return d.data.color;
+			.style("fill", function(d, i){
+				return color(i);
 			})
 			.attr("d", arc);
-
+		slices.attr("d", arc);
 }
 
 
