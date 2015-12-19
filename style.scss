@@ -350,3 +350,24 @@ input[type=range],
 	width: 10px;
 	height: 20px;
 }
+
+.country {
+	z-index: 99999;
+	position: absolute;
+	top: 250px;
+	left: 305px;
+}
+
+.number {
+	z-index: 99999;
+	position: absolute;
+	top: 280px;
+	left: 290px;
+}
+
+
+.modalSVG{
+	position: relative;
+	top: 10px;
+	left: 100px;
+}

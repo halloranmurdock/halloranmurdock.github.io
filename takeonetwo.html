@@ -1,6 +1,9 @@
 ---
 layout: default
+title: Final Fish
 ---
+
+
 
 
 <body>
@@ -89,7 +92,10 @@ layout: default
 	<div>
 		<a href="#close" title="Close" class="close">X</a>
 		<h2>COD</h2>
-		<svg width="400px" height="400px"> </svg>
+		<svg width="400px" height="400px" class="modalSVG"> </svg>
+
+		<div class="country"></div>
+		<div class="number"></div>
 
 
 
@@ -116,7 +122,7 @@ layout: default
 </body>
 
 <style>
-	#controls {
+/*	#controls {
 		background-color: white;
 		position: absolute;
 		top:0;
@@ -126,7 +132,7 @@ layout: default
 	svg {
 		background-color: white;
 		margin-left: 200px;
-	}
+	}*/
 
 </style>
 
@@ -175,6 +181,7 @@ function drawPie() {
 
 		data = pie(fishdata);
 
+
 		var arc = d3.svg.arc()
 			.innerRadius(120)
 			.outerRadius(200);
@@ -191,12 +198,33 @@ function drawPie() {
 			})
 			.attr("d", arc);
 		slices.attr("d", arc);
+
+
+		slices.attr("d", arc)
+		.on("mouseover", function(d){
+			d3.select(".country").text(d.data.key);
+			d3.select(".number").text(d3.format(",")(d.data.values[currentYear]));
+		})
+		.on("mouseout", function(d){
+			d3.select(".country").text("");
+			d3.select(".number").text(""); 
+		});
 }
 
 
+var nameLookup = {};
+d3.csv("data/fish/fao_species_codes.xls - Sheet1.csv", function(error, data){
+	nameLookup = data.reduce(function(obj, d){
+		obj[d.alpha] = d.english_name
+		return obj;
+	}, {});
+});
+
 	d3.selectAll(".fish").on("click", function(){
 		console.log(this.id)
-		d3.select("#openModal").select("h2").text(this.id);
+		//d3.select("#openModal").select("h2").text(this.id);
+		d3.select("#openModal").select("h2").text(nameLookup[this.id]);
+
 		currentFish = this.id;
 		var fish = this.id;
 
@@ -219,6 +247,8 @@ drawPie();
 
 // key - name
 // value - data array
+
+
 
 
 });
